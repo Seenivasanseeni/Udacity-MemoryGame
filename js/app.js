@@ -53,7 +53,7 @@ function updateWon(){
     cards[i].classList.add("animate");
 }
 
-function clickHelper(e){
+function click(e){
     card=e.target;
     if(opencard==card){
         return;
@@ -85,9 +85,6 @@ function clickHelper(e){
     }
 }
 
-function click(e){
-    setTimeout(clickHelper,2);
-}
 
 function init(){
     //icons_=shuffle(icons);
