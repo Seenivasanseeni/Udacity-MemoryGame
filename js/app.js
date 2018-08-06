@@ -3,6 +3,9 @@
  */
 var icons=["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"]; 
 
+var movesContainer=document.getElementsByClassName("moves")[0];
+var moves=0;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -36,16 +39,20 @@ var matchedCards=0;
 function addMatchCards(){
     matchedCards+=2;
 }
+
 function isOver(){
     if(matchedCards==16)
         return true;
     return false;
 }
+
 function click(e){
     card=e.target;
     if(opencard==card){
         return;
     }
+    moves+=1;
+    movesContainer.innerHTML=moves;
     card.classList.add("open","show","disable");
     if(opencard==null){
         opencard=card;
@@ -70,17 +77,20 @@ function click(e){
         opencard=null;
     }
 }
-
-for(let i=0;i<icons.length;i++){
-    const card=document.createElement("li");
-    card.classList.add("card");
-    card.innerHTML="<i class=\""+icons_[i]+"\"></i>";
-    deck.appendChild(card);
-    card.addEventListener("click",click);
-
+function init(){
+    deck.innerHTML="";
+    for(let i=0;i<icons.length;i++){
+        const card=document.createElement("li");
+        card.classList.add("card");
+        card.innerHTML="<i class=\""+icons_[i]+"\"></i>";
+        deck.appendChild(card);
+        card.addEventListener("click",click);
+    }
 }
 
-
+var restartContainer=document.getElementsByClassName("restart")[0];
+restartContainer.addEventListener("click",init);
+init()
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
