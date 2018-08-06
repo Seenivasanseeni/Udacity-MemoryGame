@@ -48,10 +48,12 @@ function addStars(){
 
 function updateWon(){
     movesContainer.textContent="You won with "+movesContainer.textContent;
-    deck.classList.add("disable");
+   var cards=document.getElementsByClassName("card");
+   for(let i=0;i<cards.length;i++)
+    cards[i].classList.add("animate");
 }
 
-function click(e){
+function clickHelper(e){
     card=e.target;
     if(opencard==card){
         return;
@@ -83,6 +85,9 @@ function click(e){
     }
 }
 
+function click(e){
+    setTimeout(clickHelper,2);
+}
 
 function init(){
     //icons_=shuffle(icons);
