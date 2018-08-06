@@ -6,16 +6,7 @@ var icons=["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper
 var movesContainer=document.getElementsByClassName("moves")[0];
 var moves=0;
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
-
-
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -46,6 +37,16 @@ function isOver(){
     return false;
 }
 
+function addStars(){
+    const score=Math.ceil(16/moves*3);
+    var stars=document.getElementsByClassName("stars")[0];
+    stars.innerHTML="";
+    for(let i=0;i<score;i++){
+        var star=document.createElement("li");
+        star.innerHTML="<i class=\"fa fa-star show\">S</i>";
+        stars.appendChild(star);
+    }
+}
 function click(e){
     card=e.target;
     if(opencard==card){
@@ -78,6 +79,7 @@ function click(e){
     }
 }
 function init(){
+    console.log("restartin");
     deck.innerHTML="";
     for(let i=0;i<icons.length;i++){
         const card=document.createElement("li");
