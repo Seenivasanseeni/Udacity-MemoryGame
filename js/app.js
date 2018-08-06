@@ -23,8 +23,6 @@ function shuffle(array) {
 
 var deck=document.getElementsByClassName("deck")[0];
 
-//icons_=shuffle(icons);
-icons_=icons; //for debugging
 var opencard=null;
 var matchedCards=0;
 function addMatchCards(){
@@ -47,6 +45,12 @@ function addStars(){
         stars.appendChild(star);
     }
 }
+
+function updateWon(){
+    movesContainer.textContent="You won with "+movesContainer.textContent;
+    deck.classList.add("disable");
+}
+
 function click(e){
     card=e.target;
     if(opencard==card){
@@ -67,7 +71,7 @@ function click(e){
             card.removeEventListener("click",click);
             addMatchCards();
             if(isOver()){
-                alert("Game Over");
+                updateWon();
             }
         }
         else{
@@ -78,8 +82,13 @@ function click(e){
         opencard=null;
     }
 }
+
+
 function init(){
-    console.log("restartin");
+    //icons_=shuffle(icons);
+    icons_=icons; //for debugging
+    
+    console.log("restarting");
     deck.innerHTML="";
     for(let i=0;i<icons.length;i++){
         const card=document.createElement("li");
