@@ -72,8 +72,8 @@ function click(e){
         }
         else{
             opencard.classList.remove("disable","show","open");
-            i=0;
             card.classList.remove("disable","show","open");
+            
         }
         opencard=null;
     }
