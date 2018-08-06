@@ -29,16 +29,55 @@ function shuffle(array) {
 
 var deck=document.getElementsByClassName("deck")[0];
 
-icons_=shuffle(icons);
+//icons_=shuffle(icons);
+icons_=icons; //for debugging
+var opencard=null;
+var matchedCards=0;
+function addMatchCards(){
+    matchedCards+=2;
+}
+function isOver(){
+    if(matchedCards==16)
+        return true;
+    return false;
+}
+function click(e){
+    card=e.target;
+    if(opencard==card){
+        return;
+    }
+    card.classList.add("open","show","disable");
+    if(opencard==null){
+        opencard=card;
+        return; //we are giving a chance if the user reclciked the same card;
+    }
+    else{
+        if(opencard.innerHTML==card.innerHTML  ){
+            opencard.classList.add("disable","match");
+            card.classList.add("disable","match");
+            opencard.removeEventListener("click",click);
+            card.removeEventListener("click",click);
+            addMatchCards();
+            if(isOver()){
+                alert("Game Over");
+            }
+        }
+        else{
+            opencard.classList.remove("disable","show","open");
+            i=0;
+            card.classList.remove("disable","show","open");
+        }
+        opencard=null;
+    }
+}
+
 for(let i=0;i<icons.length;i++){
     const card=document.createElement("li");
     card.classList.add("card");
     card.innerHTML="<i class=\""+icons_[i]+"\"></i>";
     deck.appendChild(card);
-    card.addEventListener("click",function(e){
-        card.classList.add("open","show");
-        console.log(card);
-    })
+    card.addEventListener("click",click);
+
 }
 
 
