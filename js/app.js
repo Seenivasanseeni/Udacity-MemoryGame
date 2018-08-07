@@ -78,10 +78,11 @@ function click(e){
             }
         }
         else{
-            tempcard=opencard;
+            tempcard1=opencard;
+            tempcard2=card;
             setTimeout(function(){
-                tempcard.classList.remove("disable","show","open","animate-1");
-                card.classList.remove("disable","show","open","animate-1");
+                tempcard1.classList.remove("disable","show","open","animate-1");
+                tempcard2.classList.remove("disable","show","open","animate-1");
             },3000);
             
         }
