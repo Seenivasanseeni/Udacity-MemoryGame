@@ -48,8 +48,10 @@ function addStars(){
 function updateWon(){
     movesContainer.textContent="You won with "+movesContainer.textContent;
    var cards=document.getElementsByClassName("card");
-   for(let i=0;i<cards.length;i++)
+   for(let i=0;i<cards.length;i++){
+    cards[i].classList.remove("animate-1");
     cards[i].classList.add("animate");
+   }
 }
 
 function click(e){
