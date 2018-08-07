@@ -2,6 +2,8 @@
  * Create a list that holds all of your cards
  */
 var icons=["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"]; 
+var stars=document.getElementsByClassName("stars")[0];
+    
 
 var movesContainer=document.getElementsByClassName("moves")[0];
 var moves=0;
@@ -37,7 +39,6 @@ function isOver(){
 
 function addStars(){
     const score=Math.ceil(16/moves*3);
-    var stars=document.getElementsByClassName("stars")[0];
     stars.innerHTML="";
     for(let i=0;i<score;i++){
         var star=document.createElement("li");
@@ -60,7 +61,7 @@ function click(e){
     }
     moves+=1;
     movesContainer.innerHTML=moves;
-    card.classList.add("open","show","disable");
+    card.classList.add("open","show","disable","animate-1");
     if(opencard==null){
         opencard=card;
         return; //we are giving a chance if the user reclciked the same card;
@@ -77,8 +78,11 @@ function click(e){
             }
         }
         else{
-            opencard.classList.remove("disable","show","open");
-            card.classList.remove("disable","show","open");
+            tempcard=opencard;
+            setTimeout(function(){
+                tempcard.classList.remove("disable","show","open","animate-1");
+                card.classList.remove("disable","show","open","animate-1");
+            },3000);
             
         }
         opencard=null;
@@ -89,9 +93,11 @@ function click(e){
 function init(){
     //icons_=shuffle(icons);
     icons_=icons; //for debugging
-    
-    console.log("restarting");
+    console.log("rebuilding the framework");
+    stars.innerHTML="";
     deck.innerHTML="";
+    moves=0;
+    movesContainer.innerHTML=moves;
     for(let i=0;i<icons.length;i++){
         const card=document.createElement("li");
         card.classList.add("card");

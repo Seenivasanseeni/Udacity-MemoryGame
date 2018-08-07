@@ -116,6 +116,11 @@ h1 {
 .animate{
     animation: spin 3s linear 0s infinite;
 }
+
+.animate-1{
+    animation: spin 2s linear 0s 1;    
+}
+
 @keyframes spin{
     0%{
         transform: rotateY(180deg);
@@ -124,3 +129,4 @@ h1 {
         transform: rotateY(0deg);
     }
 }
+
