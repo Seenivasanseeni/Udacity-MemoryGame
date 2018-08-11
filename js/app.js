@@ -59,7 +59,7 @@ function isWon(){
 function addScorePanel(){
     displayPanel.innerHTML="";
     displayPanel.classList.toggle("display-panel-style");
-    var head="<h1>Congratulations <h1><h1>You Won!...</h1>";
+    var head="<h1>Congratulations </h1><h1>You Won!...</h1>";
     var movesText="<p>You won with "+moves+" moves</p>";
     var timerText="";
     var starsText=addStars();
