@@ -51,6 +51,7 @@ function updateWon(){
     cards[i].classList.add("animate");
    }
 }
+
 function updateMoves(){
     moves+=1;
     movesContainer.innerHTML=moves;
