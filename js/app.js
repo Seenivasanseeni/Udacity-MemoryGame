@@ -55,22 +55,25 @@ function updateWon(){
 
 function click(e){
     card=e.target;
+    if(opencard!=null && opencard.id==card.id){
+        console.log("Same card is being clicked");
+        return;
+    }
+    card.classList.toggle("open");
     if(opencard==null){
         console.log("open card is null ");
         opencard=card;
         return;
     }
-    if(opencard.id==card.id){
-        console.log("Same card is being clicked");
-        return;
-    }
-    console.log(a=card.firstElementChild.classList);
-    console.log(b=opencard.firstElementChild.classList);
     if(card.firstElementChild.classList.toString()==opencard.firstElementChild.classList.toString()){
         console.log("Match");
+        card.classList.toggle("match");
+        opencard.classList.toggle("match");
         opencard=null;
     }
     else{
+        card.classList.toggle("open");
+        opencard.classList.toggle("open");
         opencard=null;
         console.log("No match");
     }
@@ -85,6 +88,7 @@ function init(){
     deck.innerHTML="";
     moves=0;
     opencard=null;
+    matchedCards=0;
     movesContainer.innerHTML=moves;
     for(let i=0;i<icons.length;i++){
         const card=document.createElement("li");
