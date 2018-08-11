@@ -85,7 +85,7 @@ function click(e){
             opencard_.classList.toggle("open");
             opencard_.classList.toggle("show");
             console.log("No match");
-        },420,card,opencard);
+        },800,card,opencard);
         opencard=null;
     }
 }
