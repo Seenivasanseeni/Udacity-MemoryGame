@@ -25,11 +25,11 @@ function shuffle(array) {
 }
 
 function addStars(){
-    const score=Math.ceil(16/moves*3);
+    const score=Math.floor(16/moves*3);
     stars.innerHTML="";
     for(let i=0;i<score;i++){
         var star=document.createElement("li");
-        star.innerHTML="<i class=\"fa fa-star show\">S</i>";
+        star.innerHTML="<i class=\"fa fa-star show\"></i>";
         stars.appendChild(star);
     }
 }
@@ -52,8 +52,10 @@ function addScorePanel(){
 
 function updateWon(){
     console.log("You won");
+    console.log("You won with "+moves+" moves");
     movesContainer.textContent="You won with "+movesContainer.textContent;
-   var cards=document.getElementsByClassName("card");
+    addStars();
+    var cards=document.getElementsByClassName("card");
    for(let i=0;i<cards.length;i++){
     cards[i].classList.add("animate"); //its not working may be css doent allow two animations
    }
