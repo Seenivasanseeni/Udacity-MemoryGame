@@ -10,6 +10,8 @@ var deck=document.getElementsByClassName("deck")[0];
 var opencard=null;
 var matchedCards=0;
 
+var displayPanel=document.getElementsByClassName("display-panel")[0];
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -24,14 +26,23 @@ function shuffle(array) {
     return array;
 }
 
+function findScore(n){
+    if(n==16)
+        return 3;
+    if(n>=17 && n <=20)
+        return 2;
+    return 1;
+
+}
 function addStars(){
-    const score=Math.floor(16/moves*3);
-    stars.innerHTML="";
+    const score=findScore(moves);
+    stars.innerHTML="Stars:";
     for(let i=0;i<score;i++){
         var star=document.createElement("li");
         star.innerHTML="<i class=\"fa fa-star show\"></i>";
         stars.appendChild(star);
     }
+    return stars.outerHTML;
 }
 
 
@@ -46,7 +57,13 @@ function isWon(){
 }
 
 function addScorePanel(){
-
+    displayPanel.innerHTML="";
+    displayPanel.classList.toggle("display-panel-style");
+    var head="<h1>Congratulations <h1><h1>You Won!...</h1>";
+    var movesText="<p>You won with "+moves+" moves</p>";
+    var timerText="";
+    var starsText=addStars();
+    displayPanel.innerHTML=head+movesText+starsText;
 }
 
 
@@ -55,6 +72,7 @@ function updateWon(){
     console.log("You won with "+moves+" moves");
     movesContainer.textContent="You won with "+movesContainer.textContent;
     addStars();
+    addScorePanel();
     var cards=document.getElementsByClassName("card");
    for(let i=0;i<cards.length;i++){
     cards[i].classList.add("animate"); //its not working may be css doent allow two animations
@@ -119,6 +137,8 @@ function init(){
     console.log("rebuilding the deck");
     stars.innerHTML="";
     deck.innerHTML="";
+    displayPanel.innerHTML="";
+    displayPanel.classList.remove("display-panel-style");
     moves=0;
     opencard=null;
     matchedCards=0;

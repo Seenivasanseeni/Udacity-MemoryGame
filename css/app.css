@@ -130,3 +130,13 @@ h1 {
     }
 }
 
+.display-panel-style{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background: linear-gradient(160deg, #f3354f 0%, #e25f23 100%);
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);    
+}
