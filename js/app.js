@@ -24,16 +24,6 @@ function shuffle(array) {
     return array;
 }
 
-function addMatchCards(){
-    matchedCards+=2;
-}
-
-function isOver(){
-    if(matchedCards==16)
-        return true;
-    return false;
-}
-
 function addStars(){
     const score=Math.ceil(16/moves*3);
     stars.innerHTML="";
@@ -44,11 +34,28 @@ function addStars(){
     }
 }
 
+
+function updateMatch(){
+    matchedCards+=2;
+}
+
+function isWon(){
+    if(matchedCards==16)
+        return true;
+    return false;
+}
+
+function addScorePanel(){
+
+}
+
+
 function updateWon(){
+    console.log("You won");
     movesContainer.textContent="You won with "+movesContainer.textContent;
    var cards=document.getElementsByClassName("card");
    for(let i=0;i<cards.length;i++){
-    cards[i].classList.add("animate");
+    cards[i].classList.add("animate"); //its not working may be css doent allow two animations
    }
 }
 
@@ -67,6 +74,7 @@ function click(e){
     updateMoves();
     card.classList.toggle("open");
     card.classList.toggle("show");
+    card.classList.toggle("animate-1");
     if(opencard==null){
         console.log("open card is null ");
         opencard=card;
@@ -81,6 +89,10 @@ function click(e){
         opencard.removeEventListener('click',click);
         
         opencard=null;
+        updateMatch();
+        if(isWon()){
+            updateWon();
+        }
     }
     else{
         setTimeout( function(card_,opencard_){
@@ -88,8 +100,10 @@ function click(e){
             console.log(opencard_);
             card_.classList.toggle("open");
             card_.classList.toggle("show");
+            card_.classList.toggle("animate-1");
             opencard_.classList.toggle("open");
             opencard_.classList.toggle("show");
+            opencard_.classList.toggle("animate-1");
             console.log("No match");
         },800,card,opencard);
         opencard=null;

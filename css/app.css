@@ -74,7 +74,6 @@ h1 {
 
 .deck .card.show {
     font-size: 33px;
-    animation: spin 1s ease 0s 1;
 }
 
 .deck .card.match {
@@ -119,7 +118,7 @@ h1 {
 }
 
 .animate-1{
-    animation: spin 2s linear 0s 1;    
+    animation: spin 1s linear 0s 1;    
 }
 
 @keyframes spin{
