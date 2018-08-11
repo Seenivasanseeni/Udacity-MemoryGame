@@ -49,58 +49,46 @@ function updateWon(){
     movesContainer.textContent="You won with "+movesContainer.textContent;
    var cards=document.getElementsByClassName("card");
    for(let i=0;i<cards.length;i++){
-    cards[i].classList.remove("animate-1");
     cards[i].classList.add("animate");
    }
 }
 
 function click(e){
     card=e.target;
-    if(opencard==card){
+    if(opencard==null){
+        console.log("open card is null ");
+        opencard=card;
         return;
     }
-    moves+=1;
-    movesContainer.innerHTML=moves;
-    card.classList.add("open","show","disable","animate-1");
-    if(opencard==null){
-        opencard=card;
-        return; //we are giving a chance if the user reclciked the same card;
+    if(opencard.id==card.id){
+        console.log("Same card is being clicked");
+        return;
+    }
+    console.log(a=card.firstElementChild.classList);
+    console.log(b=opencard.firstElementChild.classList);
+    if(card.firstElementChild.classList.toString()==opencard.firstElementChild.classList.toString()){
+        console.log("Match");
+        opencard=null;
     }
     else{
-        if(opencard.innerHTML==card.innerHTML  ){
-            opencard.classList.add("disable","match");
-            card.classList.add("disable","match");
-            opencard.removeEventListener("click",click);
-            card.removeEventListener("click",click);
-            addMatchCards();
-            if(isOver()){
-                updateWon();
-            }
-        }
-        else{
-            tempcard1=opencard;
-            tempcard2=card;
-            setTimeout(function(){
-                tempcard1.classList.remove("disable","show","open","animate-1");
-                tempcard2.classList.remove("disable","show","open","animate-1");
-            },3000);
-            
-        }
         opencard=null;
+        console.log("No match");
     }
 }
 
 
 function init(){
-    icons_=shuffle(icons);
-    //icons_=icons; //for debugging
+    //icons_=shuffle(icons);
+    icons_=icons; //for debugging
     console.log("rebuilding the deck");
     stars.innerHTML="";
     deck.innerHTML="";
     moves=0;
+    opencard=null;
     movesContainer.innerHTML=moves;
     for(let i=0;i<icons.length;i++){
         const card=document.createElement("li");
+        card.id=i;
         card.classList.add("card");
         card.innerHTML="<i class=\""+icons_[i]+"\"></i>";
         deck.appendChild(card);
