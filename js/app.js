@@ -60,6 +60,7 @@ function click(e){
         return;
     }
     card.classList.toggle("open");
+    card.classList.toggle("show");
     if(opencard==null){
         console.log("open card is null ");
         opencard=card;
@@ -73,7 +74,9 @@ function click(e){
     }
     else{
         card.classList.toggle("open");
+        card.classList.toggle("show");
         opencard.classList.toggle("open");
+        opencard.classList.toggle("show");
         opencard=null;
         console.log("No match");
     }
