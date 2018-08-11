@@ -77,12 +77,16 @@ function click(e){
         opencard=null;
     }
     else{
-        card.classList.toggle("open");
-        card.classList.toggle("show");
-        opencard.classList.toggle("open");
-        opencard.classList.toggle("show");
+        setTimeout( function(card_,opencard_){
+            console.log(card_);
+            console.log(opencard_);
+            card_.classList.toggle("open");
+            card_.classList.toggle("show");
+            opencard_.classList.toggle("open");
+            opencard_.classList.toggle("show");
+            console.log("No match");
+        },420,card,opencard);
         opencard=null;
-        console.log("No match");
     }
 }
 
