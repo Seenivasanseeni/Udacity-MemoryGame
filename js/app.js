@@ -9,6 +9,8 @@ var moves=0;
 var deck=document.getElementsByClassName("deck")[0];
 var opencard=null;
 var matchedCards=0;
+var startTimer=new Date();
+var endTimer=0;
 
 var displayPanel=document.getElementsByClassName("display-panel")[0];
 
@@ -56,16 +58,28 @@ function isWon(){
     return false;
 }
 
+
+function calculateTime(){
+    endTimer=new Date();
+    var totalSeconds=Math.floor((endTimer-startTimer)/1000);
+    var hours=Math.floor(totalSeconds/(60*60));
+    totalSeconds=totalSeconds%(60*60);
+    var minutes=Math.floor(totalSeconds/(60));
+    totalSeconds=totalSeconds%60;
+    var seconds=totalSeconds;
+    return hours+":"+minutes+":"+seconds;
+}
+
+
 function addScorePanel(){
     displayPanel.innerHTML="";
     displayPanel.classList.toggle("display-panel-style");
     var head="<h1>Congratulations </h1><h1>You Won!...</h1>";
     var movesText="<p>You won with "+moves+" moves</p>";
-    var timerText="";
+    var timerText="<p>Time "+calculateTime()+"</p>";
     var starsText=addStars();
-    displayPanel.innerHTML=head+movesText+starsText;
+    displayPanel.innerHTML=head+movesText+starsText+timerText;
 }
-
 
 function updateWon(){
     console.log("You won");
@@ -151,6 +165,7 @@ function init(){
         deck.appendChild(card);
         card.addEventListener("click",click);
     }
+    startTimer=new Date();
 }
 
 var restartContainer=document.getElementsByClassName("restart")[0];
