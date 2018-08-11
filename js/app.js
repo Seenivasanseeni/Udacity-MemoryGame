@@ -70,6 +70,10 @@ function click(e){
         console.log("Match");
         card.classList.toggle("match");
         opencard.classList.toggle("match");
+        
+        card.removeEventListener('click',click);
+        opencard.removeEventListener('click',click);
+        
         opencard=null;
     }
     else{
