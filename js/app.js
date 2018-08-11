@@ -146,8 +146,8 @@ function click(e){
 
 
 function init(){
-    //icons_=shuffle(icons);
-    icons_=icons; //for debugging
+    icons_=shuffle(icons);
+    //icons_=icons; //for debugging
     console.log("rebuilding the deck");
     stars.innerHTML="";
     deck.innerHTML="";
