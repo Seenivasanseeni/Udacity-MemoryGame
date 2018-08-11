@@ -6,6 +6,9 @@ var stars=document.getElementsByClassName("stars")[0];
 var movesContainer=document.getElementsByClassName("moves")[0];
 var moves=0;
 
+var deck=document.getElementsByClassName("deck")[0];
+var opencard=null;
+var matchedCards=0;
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -21,10 +24,6 @@ function shuffle(array) {
     return array;
 }
 
-var deck=document.getElementsByClassName("deck")[0];
-
-var opencard=null;
-var matchedCards=0;
 function addMatchCards(){
     matchedCards+=2;
 }
@@ -52,6 +51,10 @@ function updateWon(){
     cards[i].classList.add("animate");
    }
 }
+function updateMoves(){
+    moves+=1;
+    movesContainer.innerHTML=moves;
+}
 
 function click(e){
     card=e.target;
@@ -59,6 +62,8 @@ function click(e){
         console.log("Same card is being clicked");
         return;
     }
+    //valid move 
+    updateMoves();
     card.classList.toggle("open");
     card.classList.toggle("show");
     if(opencard==null){
