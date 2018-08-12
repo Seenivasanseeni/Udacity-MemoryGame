@@ -1,7 +1,8 @@
 
-var icons=["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"]; 
-var stars=document.getElementsByClassName("stars")[0];
-    
+var icons=["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"]; 
+icons=icons.concat(icons);
+
+var stars=document.getElementsByClassName("stars")[0];    
 
 var movesContainer=document.getElementsByClassName("moves")[0];
 var moves=0;
