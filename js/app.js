@@ -162,6 +162,7 @@ function init(){
     stars.innerHTML="";
     deck.innerHTML="";
     displayPanel.innerHTML="";
+    timer.innerHTML="Time:0:0:0";
     displayPanel.classList.remove("display-panel-style");
     moves=0;
     opencard=null;
