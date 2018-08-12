@@ -17,6 +17,8 @@ const displayPanel=document.getElementsByClassName("display-panel")[0];
 
 const timer=document.getElementsByClassName("timer")[0];
 
+var timerid=0;
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -89,6 +91,7 @@ function addScorePanel(){
 }
 
 function updateWon(){
+    window.clearInterval(timerid);
     console.log("You won");
     console.log("You won with "+moves+" moves");
     movesContainer.textContent="You won with "+movesContainer.textContent;
@@ -173,7 +176,7 @@ function init(){
         card.addEventListener("click",click);
     }
     startTimer=new Date();
-    setInterval(updateTimer,1000);
+    timerid= setInterval(updateTimer,1000);
 }
 
 var restartContainer=document.getElementsByClassName("restart")[0];
