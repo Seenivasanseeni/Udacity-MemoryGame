@@ -4,16 +4,18 @@ icons=icons.concat(icons);
 
 var stars=document.getElementsByClassName("stars")[0];    
 
-var movesContainer=document.getElementsByClassName("moves")[0];
+const movesContainer=document.getElementsByClassName("moves")[0];
 var moves=0;
 
-var deck=document.getElementsByClassName("deck")[0];
+const deck=document.getElementsByClassName("deck")[0];
 var opencard=null;
 var matchedCards=0;
 var startTimer=new Date();
 var endTimer=0;
 
-var displayPanel=document.getElementsByClassName("display-panel")[0];
+const displayPanel=document.getElementsByClassName("display-panel")[0];
+
+const timer=document.getElementsByClassName("timer")[0];
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -30,9 +32,9 @@ function shuffle(array) {
 }
 
 function findScore(n){
-    if(n==16)
+    if(n<=16)
         return 3;
-    if(n>=17 && n <=20)
+    if(n <=20)
         return 2;
     return 1;
 
@@ -71,6 +73,10 @@ function calculateTime(){
     return hours+":"+minutes+":"+seconds;
 }
 
+function updateTimer(){
+    const time=calculateTime();
+    timer.textContent="Time:"+time;
+}
 
 function addScorePanel(){
     displayPanel.innerHTML="";
@@ -167,6 +173,7 @@ function init(){
         card.addEventListener("click",click);
     }
     startTimer=new Date();
+    setInterval(updateTimer,1000);
 }
 
 var restartContainer=document.getElementsByClassName("restart")[0];
